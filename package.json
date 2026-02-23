@@ -1,0 +1,24 @@
+{
+  "name": "dreyko-drey-donations-backend",
+  "version": "1.0.0",
+  "description": "Backend Node.js + Express para barra de progreso de donaciones en tiempo real para DreykoDrey.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.5.0",
+    "express": "^5.2.1",
+    "pg": "^8.16.0",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

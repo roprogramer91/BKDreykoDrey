@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>DreykoDrey - Biblioteca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-dark">
+    <header class="dd-header">
+      <div class="dd-header-left">
+        <a href="index.html" class="dd-logo">DreykoDrey</a>
+      </div>
+      <nav class="dd-nav">
+        <a href="index.html" class="dd-nav-link is-active">Inicio</a>
+      </nav>
+    </header>
+
+    <main class="dd-main">
+      <section class="dd-hero">
+        <h1 class="dd-hero-title">Tu biblioteca de doramas online</h1>
+        <p class="dd-hero-subtitle">
+          Descubre, continúa desde donde te quedaste y apoya para que salgan capítulos más rápido.
+        </p>
+      </section>
+
+      <section class="dd-section">
+        <h2 class="dd-section-title">Series destacadas</h2>
+        <div id="series-grid" class="dd-series-grid">
+          <!-- Cards generadas por app.js -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="dd-footer">
+      <p>© <span id="year"></span> DreykoDrey · Hecho con cariño para dorameros.</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+

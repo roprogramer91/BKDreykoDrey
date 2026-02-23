@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>DreykoDrey - Serie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-dark">
+    <header class="dd-header">
+      <div class="dd-header-left">
+        <a href="index.html" class="dd-logo">DreykoDrey</a>
+      </div>
+      <nav class="dd-nav">
+        <a href="index.html" class="dd-nav-link">Inicio</a>
+      </nav>
+    </header>
+
+    <main class="dd-main dd-main-series">
+      <section class="dd-series-header">
+        <div>
+          <h1 id="series-title" class="dd-series-title">Cargando serie…</h1>
+          <p id="series-description" class="dd-series-description"></p>
+        </div>
+        <button id="toggle-episodes" class="dd-btn dd-btn-secondary dd-btn-episodes">
+          Episodios
+        </button>
+      </section>
+
+      <section class="dd-goal-widget" aria-live="polite">
+        <div id="goal-mini-main" class="dd-goal-widget-main">
+          🎯 Meta semanal: $0.00
+        </div>
+        <div id="goal-mini-donors" class="dd-goal-widget-sub">
+          💰 Recaudado: $0.00 (0%)
+        </div>
+      </section>
+
+      <section class="dd-series-layout">
+        <aside id="episodes-panel" class="dd-episodes-panel">
+          <div class="dd-episodes-header">
+            <h2 class="dd-episodes-title">Episodios</h2>
+            <button id="close-episodes" class="dd-episodes-close-btn" aria-label="Cerrar lista">
+              ✕
+            </button>
+          </div>
+          <ul id="episodes-list" class="dd-episodes-list">
+            <!-- Items generados por series.js -->
+          </ul>
+        </aside>
+
+        <div class="dd-series-main">
+          <section id="player-section" class="dd-player-section">
+            <div class="dd-player-wrapper">
+              <div class="dd-player-aspect">
+                <iframe
+                  id="player-iframe"
+                  src=""
+                  title="Reproductor de episodio"
+                  frameborder="0"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+                <div id="player-placeholder" class="dd-player-placeholder">
+                  <h2 class="dd-player-placeholder-title">Episodio aún no disponible</h2>
+                  <p class="dd-player-placeholder-text">
+                    Estamos subiendo capítulos. Tu apoyo ayuda a acelerar la publicación.
+                  </p>
+                  <p class="dd-player-placeholder-cta">Apoyar abajo 👇</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dd-player-controls">
+              <button id="prev-episode" class="dd-btn dd-btn-secondary">Anterior</button>
+              <button id="next-episode" class="dd-btn dd-btn-primary">Siguiente</button>
+            </div>
+          </section>
+
+          <section class="dd-donation-section">
+            <h2 class="dd-section-title">Aceleremos la serie</h2>
+            <p class="dd-donation-text">
+              El acceso siempre será gratuito.<br />
+              Tu apoyo nos permite subir capítulos con mayor frecuencia.
+            </p>
+
+            <div class="dd-donation-counter">
+              <div id="donation-amount-main" class="dd-donation-amount-main">
+                $0.00 / $0.00
+              </div>
+              <div id="donation-donors-text" class="dd-donation-donors-text">
+                0 personas ya apoyaron
+              </div>
+            </div>
+
+            <div class="dd-donation-progress">
+              <div class="dd-donation-progress-header">
+                <span id="donation-amount-text">$0 / $0</span>
+                <span id="donation-percentage-text">0%</span>
+              </div>
+              <div class="dd-donation-progress-track">
+                <div
+                  id="donation-progress-inner"
+                  class="dd-donation-progress-inner"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <p id="donation-status-text" class="dd-donation-status"></p>
+            </div>
+
+            <div class="dd-donation-actions">
+              <a
+                href="https://www.mercadopago.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="dd-btn dd-btn-primary dd-btn-full"
+              >
+                Apoyar desde Argentina 🇦🇷
+              </a>
+              <a
+                href="https://www.paypal.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="dd-btn dd-btn-secondary dd-btn-full"
+              >
+                Support from other countries 🌎
+              </a>
+            </div>
+
+            <p class="dd-donation-note">
+              Se abre en otra pestaña para que no pierdas el capítulo.
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dd-footer">
+      <p>© <span id="year"></span> DreykoDrey · Gracias por tu apoyo.</p>
+    </footer>
+
+    <div id="episodes-backdrop" class="dd-backdrop"></div>
+
+    <script src="data.js"></script>
+    <script src="series.js"></script>
+  </body>
+</html>
+
