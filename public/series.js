@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = 'http://localhost:3000';
+  const API_BASE = 'https://bkdreykodrey-production.up.railway.app';
   const seriesData = window.DREYKO_SERIES || [];
 
   function getSeriesIdFromUrl() {
