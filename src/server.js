@@ -8,6 +8,8 @@ const apiRouter = require('./routes/api');
 const webhooksRouter = require('./routes/webhooks');
 const adminRouter = require('./routes/admin');
 
+const path = require('path');
+
 const app = express();
 
 const corsOrigin = process.env.CORS_ORIGIN || '*';
@@ -19,6 +21,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/health', (req, res) => {
   res.json({ ok: true });
