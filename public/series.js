@@ -251,6 +251,24 @@
 
     fetchGoal();
     setInterval(fetchGoal, 30000);
+
+    const btnDonateAr = document.getElementById('btn-donate-ar');
+    const btnDonateUsd = document.getElementById('btn-donate-usd');
+    const seriesId = getSeriesIdFromUrl();
+
+    if (btnDonateAr) {
+      btnDonateAr.addEventListener('click', () => {
+        const url = `./donar-ar.html?seriesId=${encodeURIComponent(seriesId || '')}`;
+        window.open(url, '_blank', 'noopener');
+      });
+    }
+
+    if (btnDonateUsd) {
+      btnDonateUsd.addEventListener('click', () => {
+        const url = `./donar-usd.html?seriesId=${encodeURIComponent(seriesId || '')}`;
+        window.open(url, '_blank', 'noopener');
+      });
+    }
   }
 
   function setYear() {

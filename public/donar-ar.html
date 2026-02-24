@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>DreykoDrey - Donar ARS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-dark dd-body-donation">
+    <main class="dd-donation-page">
+      <div class="dd-donation-card">
+        <h1 class="dd-donation-title">Apoyo desde Argentina (ARS)</h1>
+        
+        <div class="dd-donation-form">
+          <label for="amountArs" class="dd-donation-label">Monto (solo Argentina - ARS)</label>
+          <input
+            type="number"
+            id="amountArs"
+            class="dd-donation-input"
+            min="1"
+            step="1"
+            placeholder="Ej: 500"
+          />
+          <p class="dd-donation-help">El monto está en pesos argentinos (ARS).</p>
+          <p id="errorArs" class="dd-donation-error"></p>
+        </div>
+
+        <div class="dd-donation-actions">
+          <button
+            type="button"
+            id="btnPagar"
+            class="dd-btn dd-btn-primary dd-btn-full"
+          >
+            Continuar a MercadoPago
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="donar-ar.js"></script>
+  </body>
+</html>
