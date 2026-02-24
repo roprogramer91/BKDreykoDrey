@@ -236,7 +236,7 @@ async function getPayPalAccessToken() {
 // --- PAYPAL ENDPOINTS ---
 router.post('/paypal/create-order', async (req, res) => {
   try {
-    const { amountUsd } = req.body;
+    const { amountUsd, returnUrl } = req.body;
     const amount = Number(amountUsd);
 
     if (!Number.isFinite(amount) || amount <= 0) {
@@ -253,6 +253,9 @@ router.post('/paypal/create-order', async (req, res) => {
     // Limit to 2 decimal places for PayPal requirement
     const formattedAmount = amount.toFixed(2);
 
+    const finalReturnUrl = returnUrl || `${domain}/donar-usd.html`;
+    const finalCancelUrl = returnUrl ? `${returnUrl}?cancel=1` : `${domain}/donar-usd.html?cancel=1`;
+
     const orderPayload = {
       intent: 'CAPTURE',
       purchase_units: [
@@ -264,8 +267,8 @@ router.post('/paypal/create-order', async (req, res) => {
         },
       ],
       application_context: {
-        return_url: `${domain}/donar-usd.html`,
-        cancel_url: `${domain}/donar-usd.html?cancel=1`,
+        return_url: finalReturnUrl,
+        cancel_url: finalCancelUrl,
       }
     };
 

@@ -73,7 +73,10 @@
           const res = await fetch(`${API_BASE}/api/paypal/create-order`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amountUsd: amount })
+            body: JSON.stringify({ 
+              amountUsd: amount,
+              returnUrl: window.location.href.split('?')[0]
+            })
           });
           
           if (!res.ok) throw new Error('Fallo al crear orden');
