@@ -5,6 +5,18 @@
     const amountInput = document.getElementById('amountArs');
     const errorText = document.getElementById('errorArs');
     const btnPagar = document.getElementById('btnPagar');
+    const chips = document.querySelectorAll('.dd-donation-chip');
+
+    if (chips) {
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          if (amountInput) {
+            amountInput.value = chip.dataset.amount;
+            if (errorText) errorText.textContent = '';
+          }
+        });
+      });
+    }
 
     if (btnPagar && amountInput) {
       btnPagar.addEventListener('click', async () => {

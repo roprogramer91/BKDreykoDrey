@@ -9,7 +9,7 @@
   <body class="theme-dark dd-body-donation">
     <main class="dd-donation-page">
       <div class="dd-donation-card">
-        <h1 class="dd-donation-title">Apoyo internacional (USD)</h1>
+        <h1 class="dd-donation-title">Apoyar desde el exterior</h1>
         
         <div class="dd-donation-form">
           <label for="amountUsd" class="dd-donation-label">Monto (USD)</label>
@@ -18,10 +18,15 @@
             id="amountUsd"
             class="dd-donation-input"
             min="1"
-            step="0.01"
+            step="1"
             placeholder="Ej: 5"
           />
-          <p class="dd-donation-help">El monto está en dólares (USD).</p>
+          <div class="dd-donation-chips">
+            <button type="button" class="dd-donation-chip" data-amount="2">USD 2</button>
+            <button type="button" class="dd-donation-chip" data-amount="5">USD 5</button>
+            <button type="button" class="dd-donation-chip" data-amount="10">USD 10</button>
+            <button type="button" class="dd-donation-chip" data-amount="20">USD 20</button>
+          </div>
           <p id="errorUsd" class="dd-donation-error"></p>
         </div>
 
@@ -31,7 +36,7 @@
             id="btnPagarUsd"
             class="dd-btn dd-btn-secondary dd-btn-full"
           >
-            Continuar
+            Continuar a PayPal
           </button>
         </div>
       </div>
