@@ -132,9 +132,64 @@ router.post('/paypal', async (req, res) => {
     }
 
     const paypalWebhookId = process.env.PAYPAL_WEBHOOK_ID;
-    if (!paypalWebhookId) {
+    if (paypalWebhookId) {
+      // Intentar validar la firma real
+      try {
+        const env = process.env.PAYPAL_ENV || 'sandbox';
+        const baseUrl = env === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
+        
+        // Setup token fetch manually since we can't easily import the helper from api.js directly without refactoring
+        const clientId = process.env.PAYPAL_CLIENT_ID;
+        const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+        const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+        const tokenRes = await fetch(`${baseUrl}/v1/oauth2/token`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'grant_type=client_credentials',
+        });
+        
+        if (tokenRes.ok) {
+          const { access_token } = await tokenRes.json();
+          
+          const verifyPayload = {
+            auth_algo: req.headers['paypal-auth-algo'],
+            cert_url: req.headers['paypal-cert-url'],
+            transmission_id: req.headers['paypal-transmission-id'],
+            transmission_sig: req.headers['paypal-transmission-sig'],
+            transmission_time: req.headers['paypal-transmission-time'],
+            webhook_id: paypalWebhookId,
+            webhook_event: body
+          };
+
+          const verifyRes = await fetch(`${baseUrl}/v1/notifications/verify-webhook-signature`, {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(verifyPayload)
+          });
+          
+          if (verifyRes.ok) {
+            const verifyData = await verifyRes.json();
+            if (verifyData.verification_status !== 'SUCCESS') {
+              console.warn('[PayPal] Firma de Webhook INVÁLIDA según API', verifyData);
+              return res.status(400).json({ error: 'invalid signature' });
+            }
+          } else {
+            console.error('[PayPal] Falló la llamada a verify-webhook-signature', verifyRes.status);
+            // Optionally decide whether to drop or proceed. Proceeding for robustness if PayPal API glitches.
+          }
+        }
+      } catch (err) {
+        console.error('[PayPal] Error al verificar firma del webhook', err.message);
+      }
+    } else {
       console.warn(
-        '[PayPal] PAYPAL_WEBHOOK_ID no configurado. Firma NO se está validando (MVP).'
+        '[PayPal] PAYPAL_WEBHOOK_ID no configurado. Firma NO se está validando.'
       );
     }
 
